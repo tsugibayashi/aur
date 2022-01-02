@@ -1,5 +1,5 @@
---- config.def.h	2020-06-19 18:29:45.000000000 +0900
-+++ config.h	2022-01-02 22:37:31.254889558 +0900
+--- config.def.h.old	2020-06-19 18:29:45.000000000 +0900
++++ config.def.h	2022-01-02 22:37:31.254889558 +0900
 @@ -5,7 +5,7 @@
   *
   * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
