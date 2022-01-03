@@ -72,7 +72,7 @@ static const char *volup2[]  = { "amixer", "set","Master", "22%+", NULL };
 static const char *voldown2[]  = { "amixer", "set","Master", "22%-", NULL };
 static const char *lightup[]  = { "munsellb", "p", NULL };
 static const char *lightdown[]  = { "munsellb", "m", NULL };
-static const char *screenshot[]  = { "screenshot.sh", "window", NULL };
+static const char *screenshot[]  = { "screenshot", "window", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
