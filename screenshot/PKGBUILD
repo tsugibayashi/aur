@@ -1,0 +1,18 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=screenshot
+pkgver=1
+pkgrel=1
+pkgdesc='A simple console frontend for scrot'
+arch=('x86_64')
+license=('GPL3')
+depends=('scrot')
+url=https://github.com/tsugibayashi/screenshot
+source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
+sha256sums=('SKIP')
+
+package() {
+  cd $pkgname
+  install -m755 -D screenshot "$pkgdir/usr/bin/screenshot"
+}
+
