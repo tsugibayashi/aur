@@ -1,0 +1,18 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=munsellb
+pkgver=1
+pkgrel=1
+pkgdesc='Munsellb is used to adjust the backlight brightness using xbacklight based on the Munsell color system'
+arch=('x86_64')
+license=('GPL3')
+depends=('xorg-xbacklight' 'bc')
+url=https://github.com/tsugibayashi/munsellb
+source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
+sha256sums=('SKIP')
+
+package() {
+  cd $pkgname
+  install -m755 -D munsellb "$pkgdir/usr/bin/munsellb"
+}
+
