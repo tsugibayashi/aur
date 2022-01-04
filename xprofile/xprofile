@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# start some nice programs
+xsetroot -solid '#008080'
+xset r rate 200 30
+
+# locale
+#export LC_ALL=ja_JP.UTF-8
+#export LANG=ja_JP.UTF-8
+
+# input method
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcitx'
+fcitx5 &
+
+# backlight
+munsellb r
+
+# screen saver off
+xset s 1800 1800
+xset -dpms
+
+# capslock -> ctrl
+setxkbmap -option ctrl:nocaps
+
+# Statubar loop for dwm
+while true; do
+    dwm-statusbar hms b_d
+    sleep 1s    # Update time every second
+done &
+

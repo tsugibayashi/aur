@@ -1,0 +1,17 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=xprofile
+pkgver=1
+pkgrel=1
+pkgdesc='/etc/xprofile for dwm'
+arch=('x86_64')
+license=('custom')
+depends=('dwm' 'munsellb' 'dwm-statusbar' 'fcitx5')
+url=https://github.com/tsugibayashi/aur
+source=(xprofile)
+sha256sums=('432c8d29564f0efb19c7fcbc5346ba0f6f62ad82001910c03a4c18f3edd4b144')
+
+package() {
+  install -m644 -D xprofile "$pkgdir/etc/xprofile"
+}
+
