@@ -14,6 +14,9 @@ export QT_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 fcitx5 &
 
+# yaskkserv2
+yaskkserv2 --google-cache-filename=$HOME/.local/share/fcitx5/skk/yaskkserv2.cache /usr/share/skk/SKK-JISYO.L.yaskkserv2
+
 # backlight
 munsellb r
 

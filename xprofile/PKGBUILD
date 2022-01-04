@@ -9,7 +9,7 @@ license=('custom')
 depends=('dwm' 'munsellb' 'dwm-statusbar' 'fcitx5')
 url=https://github.com/tsugibayashi/aur
 source=(xprofile)
-sha256sums=('432c8d29564f0efb19c7fcbc5346ba0f6f62ad82001910c03a4c18f3edd4b144')
+sha256sums=('063b8752e14aba8cacb40da0f690222112e871616234194068d40f5d08392d1b')
 
 package() {
   install -m644 -D xprofile "$pkgdir/etc/xprofile"
