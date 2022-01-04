@@ -1,0 +1,51 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=yaskkserv-git
+_pkgname=yaskkserv
+pkgver=1.1.1.a8306b1
+pkgrel=1
+pkgdesc='Yet Another SKK Japanese input method dictionary server'
+arch=('x86_64' 'i686')
+url='https://github.com/wachikun/yaskkserv'
+license=('GPL')
+depends=('openssl')
+makedepends=('perl' 'skk-jisyo')
+source=("$_pkgname::git+https://github.com/wachikun/$_pkgname"
+        yaskkserv.service
+        yaskkserv.socket)
+commit_hash='a8306b1412ca54e280d791e26133098822826443'
+sha256sums=('SKIP'
+            '85ed0cf1c98ac7957e9dded29617ff62ac02d6a3331c2492497a5074d78bf7be'
+            '41c1b1104ad1a604b43dd580eacc41e03ca32a882f487d4c48c974407dc45214')
+
+prepare() {
+  # Changes the value of User in yaskkserv.service
+  local username=`whoami`
+  sed -i "s/nobody$/$username/" $srcdir/yaskkserv.service
+
+  cd $_pkgname
+  git checkout $commit_hash
+}
+
+build() {
+  cd $_pkgname
+  LC_ALL=C ./configure --prefix=/usr --enable-google-japanese-input \
+    --disable-gnutls --enable-openssl --enable-systemd
+  make
+}
+
+package() {
+  cd $_pkgname
+  make PREFIX="$pkgdir/usr" install_all
+  mv "$pkgdir/usr/sbin/"* "$pkgdir/usr/bin/"
+  rmdir "$pkgdir/usr/sbin"
+
+  mkdir -p "$pkgdir/usr/share/skk"
+  "$pkgdir/usr/bin/yaskkserv_make_dictionary" /usr/share/skk/SKK-JISYO.L "$pkgdir/usr/share/skk/SKK-JISYO.L.yaskkserv"
+
+  local _systemd_dir="$pkgdir/usr/lib/systemd/system"
+  mkdir -p "$_systemd_dir"
+  install -m644 "$srcdir/yaskkserv.socket" "$_systemd_dir/"
+  install -m644 "$srcdir/yaskkserv.service" "$_systemd_dir/"
+}
+
