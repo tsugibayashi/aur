@@ -1,0 +1,18 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=dwm_statusbar.py
+pkgver=1
+pkgrel=1
+pkgdesc='A dwm statusbar implemented in Python'
+arch=('x86_64')
+license=('MIT')
+depends=('dwm' 'python-psutil' 'python-mpd2')
+url=https://github.com/tsugibayashi/dwm_statusbar.py
+source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
+sha256sums=('SKIP')
+
+package() {
+  cd $pkgname
+  install -m755 -D dwm_statusbar.py "$pkgdir/usr/bin/dwm_statusbar.py"
+}
+
