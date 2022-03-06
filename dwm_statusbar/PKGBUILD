@@ -1,6 +1,6 @@
 # Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
 
-pkgname=dwm_statusbar.py
+pkgname=dwm_statusbar
 pkgver=1
 pkgrel=1
 pkgdesc='A dwm statusbar implemented in Python'
