@@ -29,7 +29,7 @@ setxkbmap -option ctrl:nocaps
 
 # Statubar loop for dwm
 while true; do
-    dwm-statusbar hms b_d
+    dwm_statusbar.py bat_hms
     sleep 1s    # Update time every second
 done &
 

@@ -9,7 +9,7 @@ license=('custom')
 depends=('dwm' 'munsellb' 'dwm-statusbar' 'fcitx5' 'yaskkserv2-git')
 url=https://github.com/tsugibayashi/aur
 source=(xprofile)
-sha256sums=('063b8752e14aba8cacb40da0f690222112e871616234194068d40f5d08392d1b')
+sha256sums=('919c7d34b7bb6f25e8770dd774030587bed2b500df22238a2d3ed3a22af93f54')
 
 package() {
   install -m644 -D xprofile "$pkgdir/etc/xprofile"
