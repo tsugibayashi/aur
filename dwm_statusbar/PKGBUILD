@@ -8,7 +8,7 @@ arch=('x86_64')
 license=('MIT')
 depends=('dwm' 'python-psutil' 'python-mpd2')
 url=https://github.com/tsugibayashi/dwm_statusbar.py
-source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
+source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname".py)
 sha256sums=('SKIP')
 
 package() {
