@@ -6,10 +6,10 @@ pkgrel=1
 pkgdesc='/etc/xprofile for dwm'
 arch=('x86_64')
 license=('custom')
-depends=('dwm' 'munsellb' 'dwm-statusbar' 'fcitx5' 'yaskkserv2-git')
+depends=('dwm' 'munsell' 'dwm_statusbar' 'fcitx5' 'yaskkserv2-git')
 url=https://github.com/tsugibayashi/aur
 source=(xprofile)
-sha256sums=('919c7d34b7bb6f25e8770dd774030587bed2b500df22238a2d3ed3a22af93f54')
+sha256sums=('15672b38cfa344a93396a7b66d94a46f337d73044a1f0e0b10b2b2c6f1d0663d')
 
 package() {
   install -m644 -D xprofile "$pkgdir/etc/xprofile"

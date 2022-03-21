@@ -18,7 +18,11 @@ fcitx5 &
 yaskkserv2 --google-cache-filename=$HOME/.local/share/fcitx5/skk/yaskkserv2.cache /usr/share/skk/SKK-JISYO.L.yaskkserv2
 
 # backlight
-munsellb r
+if [ -f $HOME/.xbacklightrc ]; then
+    munsell.py xbacklight s `cat $HOME/.xbacklightrc | grep ^brightness | gawk '{print($3)}'`
+else
+    munsell.py xbacklight s 3.5
+fi
 
 # screen saver off
 xset s 1800 1800
@@ -29,7 +33,7 @@ setxkbmap -option ctrl:nocaps
 
 # Statubar loop for dwm
 while true; do
-    dwm_statusbar.py bat_hms
+    dwm_statusbar.py xbacklight_bat_hms
     sleep 1s    # Update time every second
 done &
 
