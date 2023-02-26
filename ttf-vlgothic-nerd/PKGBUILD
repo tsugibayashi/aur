@@ -1,0 +1,19 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=ttf-vlgothic-nerd
+pkgver=20141206
+pkgrel=1
+pkgdesc="Japanese TrueType fonts from Vine Linux"
+arch=('any')
+url="https://github.com/tsunesan3/awsome-jp-coding-fonts"
+license=('custom')
+depends=('fontconfig' 'xorg-mkfontscale')
+source=(https://github.com/tsunesan3/awsome-jp-coding-fonts/raw/master/VLGothic/VLGothic.ttf)
+sha256sums=('9e22e5d319e8fccd083e866de15fb4ceef6cea85aaaa9f306263ba56f9476f65')
+
+package() {
+  cd ${srcdir}
+
+  install -d ${pkgdir}/usr/share/fonts/TTF
+  install -m644 *.ttf ${pkgdir}/usr/share/fonts/TTF
+}
