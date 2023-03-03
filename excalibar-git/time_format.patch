@@ -1,0 +1,11 @@
+--- time.c.org	2023-03-03 17:58:48.447250041 +0900
++++ time.c	2023-03-03 18:07:47.495767764 +0900
+@@ -11,7 +11,7 @@
+ void init_config(struct config* config)
+ {
+ 	plugin_init_config(config);
+-	time_format = strdup("%d/%m/%Y %H:%M:%S");
++	time_format = strdup("%Y/%m/%d %H:%M:%S");
+ }
+ 
+ int config(const char* name, const char* value)
