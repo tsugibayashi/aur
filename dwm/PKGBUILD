@@ -1,20 +1,20 @@
 # Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
 
 pkgname=dwm
-pkgver=6.3
+pkgver=6.4
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="https://dwm.suckless.org"
 arch=('i686' 'x86_64')
 license=('MIT')
 options=(zipman)
-depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'st' 'dmenu')
+depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'dmenu')
 source=(https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
         https://dwm.suckless.org/patches/systray/dwm-systray-$pkgver.diff
         dwm.desktop
         config.h)
-sha256sums=('badaa028529b1fba1fd7f9a84f3b64f31190466c858011b53e2f7b70c6a3078d'
-            'b2d5914e26eb5dbe1a4649a213884544d841f6a5f157e93eca8f7f444b749fde'
+sha256sums=('fa9c0d69a584485076cfc18809fd705e5c2080dafb13d5e729a3646ca7703a6e'
+            'e5e205b9286b8b65821ee60fe8dc93bfd686c39cc6c07cdd82af52a824825d06'
             'bc36426772e1471d6dd8c8aed91f288e16949e3463a9933fee6390ee0ccd3f81'
             'SKIP')
 
