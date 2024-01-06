@@ -1,0 +1,33 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=yaskkserv2
+pkgver=0.1.7
+pkgrel=1
+pkgdesc='Yet Another SKK Japanese input method dictionary server'
+arch=('x86_64' 'i686')
+url='https://github.com/wachikun/yaskkserv2'
+license=('GPL')
+depends=('openssl')
+makedepends=('rust' 'skk-jisyo')
+source=("$url/archive/refs/tags/${pkgver}.tar.gz")
+sha256sums=('93831cd32cd60bf946fbfef988b85c288105134a9a3ac46cf82f0e18babd1d4b')
+
+build() {
+  cd $pkgname-$pkgver
+  cargo build --release
+}
+
+package() {
+  cd $pkgname-$pkgver/target/release/
+
+  mkdir -p "$pkgdir/usr/bin"
+  install -m755 yaskkserv2 "$pkgdir/usr/bin"
+  install -m755 yaskkserv2_make_dictionary "$pkgdir/usr/bin"
+
+  # Creates a dictionary for yaskkserv2
+  mkdir -p "$pkgdir/usr/share/skk"
+  "$pkgdir/usr/bin/yaskkserv2_make_dictionary" \
+     --dictionary-filename="$pkgdir/usr/share/skk/SKK-JISYO.L.yaskkserv2" \
+     /usr/share/skk/SKK-JISYO.L
+}
+
