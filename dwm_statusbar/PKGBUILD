@@ -13,6 +13,6 @@ sha256sums=('SKIP')
 
 package() {
   cd $pkgname
-  install -m755 -D dwm_statusbar.py "$pkgdir/usr/bin/dwm_statusbar.py"
+  install -m755 -D dwmstatusbar.py "$pkgdir/usr/bin/dwmstatusbar.py"
 }
 
