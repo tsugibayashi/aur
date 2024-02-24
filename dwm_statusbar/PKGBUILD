@@ -3,7 +3,7 @@
 pkgname=dwm_statusbar
 pkgver=1
 pkgrel=1
-pkgdesc='A dwm statusbar implemented in Python'
+pkgdesc='A dwm statusbar implemented with Python'
 arch=('x86_64')
 license=('MIT')
 depends=('dwm' 'xorg-xsetroot' 'python-psutil' 'python-mpd2' 'python-pyalsaaudio')
