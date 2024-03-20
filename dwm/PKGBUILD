@@ -1,7 +1,7 @@
 # Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
 
 pkgname=dwm
-pkgver=6.4
+pkgver=6.5
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="https://dwm.suckless.org"
@@ -10,12 +10,10 @@ license=('MIT')
 options=(zipman)
 depends=('libx11' 'libxinerama' 'libxft' 'freetype2' 'dmenu')
 source=(https://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
-        https://dwm.suckless.org/patches/systray/dwm-systray-$pkgver.diff
-        dwm-bottomgaps-$pkgver.diff
+        dwm-bottomgaps-6.4.diff
         dwm.desktop
         config.h)
 sha256sums=('fa9c0d69a584485076cfc18809fd705e5c2080dafb13d5e729a3646ca7703a6e'
-            'e5e205b9286b8b65821ee60fe8dc93bfd686c39cc6c07cdd82af52a824825d06'
             '9044fecc66bd60b4004a304155915603f961d0c9e95bc85d82547def89742467'
             'bc36426772e1471d6dd8c8aed91f288e16949e3463a9933fee6390ee0ccd3f81'
             'SKIP')
@@ -23,7 +21,7 @@ sha256sums=('fa9c0d69a584485076cfc18809fd705e5c2080dafb13d5e729a3646ca7703a6e'
 prepare() {
   cd "$srcdir/$pkgname-$pkgver"
 
-  patch -p1 < ../dwm-systray-$pkgver.diff
+  #patch -p1 < ../dwm-systray-$pkgver.diff
   patch -p1 < ../dwm-bottomgaps-$pkgver.diff
 
   if [ -e "$srcdir/config.h" ]; then
