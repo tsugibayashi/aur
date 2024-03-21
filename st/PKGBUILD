@@ -1,7 +1,7 @@
 # Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
 
 pkgname=st
-pkgver=0.8.5
+pkgver=0.9.1
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64' 'armv7h' 'aarch64')
@@ -10,63 +10,34 @@ depends=(libxft)
 url=https://st.suckless.org
 source=(https://dl.suckless.org/$pkgname/$pkgname-$pkgver.tar.gz
         terminfo.patch
-        config.def.h.patch
-        st.desktop)
-sha256sums=('ea6832203ed02ff74182bcb8adaa9ec454c8f989e79232cb859665e2f544ab37'
+        https://st.suckless.org/patches/disable_bold_italic_fonts/st-disable-bold-italic-fonts-0.8.2.diff
+        config.h)
+sha256sums=('16f43b9433ade9d70d6085c31f9fd99f2835eaade31221020f22143035dfc0d2'
             'f9deea445a5c6203a0e8e699f3c3b55e27275f17fb408562c4dd5d649edeea23'
-            '53b256c9f18a82b280b72eaecfe77ad5a2c17feaee5c06fa3723b13a79fa3591'
-            '46351764a5ca6349810d1eb015a905f4ac913d4edc87e639c4615f0a9bcf963d')
-_sourcedir=$pkgname-$pkgver
-_makeopts="--directory=$_sourcedir"
+            '6da0bbfe66f76d06428713ddac325894dbd5a15ad626a42b4161c2d4fcaa48fe'
+            'SKIP')
 
 prepare() {
-  patch --directory="$_sourcedir" --strip=0 < terminfo.patch
-  patch --directory="$_sourcedir" --strip=0 < config.def.h.patch
+  cd "$srcdir/$pkgname-$pkgver"
 
-  # This package provides a mechanism to provide a custom config.h. Multiple
-  # configuration states are determined by the presence of two files in
-  # $BUILDDIR:
-  #
-  # config.h  config.def.h  state
-  # ========  ============  =====
-  # absent    absent        Initial state. The user receives a message on how
-  #                         to configure this package.
-  # absent    present       The user was previously made aware of the
-  #                         configuration options and has not made any
-  #                         configuration changes. The package is built using
-  #                         default values.
-  # present                 The user has supplied his or her configuration. The
-  #                         file will be copied to $srcdir and used during
-  #                         build.
-  #
-  # After this test, config.def.h is copied from $srcdir to $BUILDDIR to
-  # provide an up to date template for the user.
-  if [ -e "$BUILDDIR/config.h" ]; then
-    cp -p "$BUILDDIR/config.h" "$_sourcedir"
-  elif [ ! -e "$BUILDDIR/config.def.h" ]; then
-    msg='This package can be configured in config.h. Copy the config.def.h '
-    msg+='that was just placed into the package directory to config.h and '
-    msg+='modify it to change the configuration. Or just leave it alone to '
-    msg+='continue to use default values.'
-    echo "$msg"
+  patch -p0 < ../terminfo.patch
+  patch -p1 < ../st-disable-bold-italic-fonts-0.8.2.diff
+
+  if [ -e "$srcdir/config.h" ]; then
+    cp -p "$srcdir/config.h" config.h
   fi
-  cp -p "$_sourcedir/config.def.h" "$BUILDDIR"
 }
 
 build() {
-  make $_makeopts X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  cd "$srcdir/$pkgname-$pkgver"
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-  local installopts='--mode 0644 -D --target-directory'
-  local shrdir="$pkgdir/usr/share"
-  local licdir="$shrdir/licenses/$pkgname"
-  local docdir="$shrdir/doc/$pkgname"
-  local application_dir="$shrdir/applications"
-  make $_makeopts PREFIX=/usr DESTDIR="$pkgdir" install
-  install $installopts "$licdir" "$_sourcedir/LICENSE"
-  install $installopts "$docdir" "$_sourcedir/README"
-  install $installopts "$shrdir/$pkgname" "$_sourcedir/st.info"
-  install $installopts "$application_dir" "$BUILDDIR/st.desktop"
+  cd "$srcdir/$pkgname-$pkgver"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -Dm644 README "$pkgdir/usr/share/doc/$pkgname/README"
+  install -Dm644 st.info "$pkgdir/usr/share/st.info"
 }
 
