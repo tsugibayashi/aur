@@ -15,7 +15,7 @@ source=(https://github.com/tsugibayashi/$pkgname/archive/refs/tags/${pkgver}.tar
 sha256sums=('80f155d3f27b67d080f2122bfc4fe6542a2772e12b4a6ab592d6ac2cfb05a2b7')
 
 package() {
-  cd $pkgname
+  cd $pkgname-$pkgver
   install -m755 -D dwmstatusbar.py "$pkgdir/usr/bin/dwmstatusbar.py"
 }
 
