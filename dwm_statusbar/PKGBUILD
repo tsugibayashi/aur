@@ -6,7 +6,10 @@ pkgrel=1
 pkgdesc='A dwm statusbar implemented with Python'
 arch=('x86_64')
 license=('MIT')
-depends=('dwm' 'xorg-xsetroot' 'python-psutil' 'python-mpd2' 'python-pyalsaaudio')
+depends=('dwm' 'xorg-xsetroot')
+optdepends=('python-psutil: battery monitoring support'
+            'python-mpd2: mpd monitoring support'
+            'python-pyalsaaudio: audio volume monitoring support')
 url=https://github.com/tsugibayashi/dwm_statusbar
 source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
 sha256sums=('SKIP')
