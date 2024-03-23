@@ -12,7 +12,7 @@ optdepends=('python-psutil: battery monitoring support'
             'python-pyalsaaudio: audio volume monitoring support')
 url=https://github.com/tsugibayashi/dwm_statusbar
 source=(https://github.com/tsugibayashi/$pkgname/archive/refs/tags/${pkgver}.tar.gz)
-sha256sums=('80f155d3f27b67d080f2122bfc4fe6542a2772e12b4a6ab592d6ac2cfb05a2b7')
+sha256sums=('3b54e6e0ee6048b748a2a78ba78aa6ac0908fa5675a3eb9db348fbae0f39acb7')
 
 package() {
   cd $pkgname-$pkgver
