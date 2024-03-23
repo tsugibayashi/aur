@@ -1,7 +1,7 @@
 # Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
 
 pkgname=dwm_statusbar
-pkgver=1
+pkgver=20240323
 pkgrel=1
 pkgdesc='A dwm statusbar implemented with Python'
 arch=('x86_64')
@@ -11,8 +11,8 @@ optdepends=('python-psutil: battery monitoring support'
             'python-mpd2: mpd monitoring support'
             'python-pyalsaaudio: audio volume monitoring support')
 url=https://github.com/tsugibayashi/dwm_statusbar
-source=("$pkgname::git+https://github.com/tsugibayashi/$pkgname")
-sha256sums=('SKIP')
+source=(https://github.com/tsugibayashi/$pkgname/archive/refs/tags/${pkgver}.tar.gz)
+sha256sums=('80f155d3f27b67d080f2122bfc4fe6542a2772e12b4a6ab592d6ac2cfb05a2b7')
 
 package() {
   cd $pkgname
