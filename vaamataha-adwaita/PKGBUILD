@@ -1,0 +1,20 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=vaamataha-adwaita
+pkgver=20210711
+pkgrel=1
+pkgdesc="Left-handed version of Adwaita cursor"
+arch=('any')
+url="https://github.com/tanasovich/vaamataha-adwaita"
+license=('LGPL-3.0-only' 'CC-BY-SA-3.0')
+depends=()
+source=("$pkgname::git+https://github.com/tanasovich/$pkgname")
+sha256sums=('SKIP')
+
+package() {
+  cd $pkgname/
+
+  install -dm755 ${pkgdir}/usr/share/icons/$pkgname
+  cp -R * ${pkgdir}/usr/share/icons/$pkgname
+}
+
