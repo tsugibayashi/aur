@@ -1,0 +1,24 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=ttf-twemoji
+pkgver=14.0.2
+pkgrel=1
+pkgdesc="Truetype builds of Twemoji; Twitter Color Emoji for everyone."
+url="https://github.com/twitter/twemoji"
+arch=(any)
+license=('Apache-2.0 AND CC-BY-4.0')
+provides=('emoji-font' 'twemoji-color-font')
+install="$pkgname.install"
+#makedepends=('rpm2cpio' 'fontconfig')
+source=("https://kojipkgs.fedoraproject.org//packages/twitter-twemoji-fonts/${pkgver}/5.fc40/noarch/twitter-twemoji-fonts-${pkgver}-5.fc40.noarch.rpm"
+        "75-twemoji.conf")
+sha256sums=('4c7626b67228645cb44fbce29c6d1f86341e62534ae1b0d332fab7a15708ec63'
+            'a77a7775557efc1c17781c0fc35a0f7ec5ccd58f233573f8875032fb8575680e')
+
+package() {
+    install -Dm644 "$srcdir/usr/share/fonts/twemoji/Twemoji.ttf" \
+      "${pkgdir}/usr/share/fonts/twemoji/twemoji.ttf"
+    install -Dm644 -t "$pkgdir/usr/share/fontconfig/conf.avail" "$srcdir/75-twemoji.conf"
+    install -Dm644 -t "$pkgdir/usr/share/licenses/twitter-twemoji-fonts" ${srcdir}/usr/share/licenses/twitter-twemoji-fonts/LICENSE*
+    install -Dm644 -t "$pkgdir/usr/share/metainfo" ${srcdir}/usr/share/metainfo/com.twitter.twemoji.metainfo.xml
+}
