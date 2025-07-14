@@ -1,0 +1,12 @@
+diff -Nru creek-0.4.2/src/Tags.zig creek-0.4.2_new/src/Tags.zig
+--- creek-0.4.2/src/Tags.zig	2024-06-10 23:16:06.000000000 +0900
++++ creek-0.4.2_new/src/Tags.zig	2025-05-28 23:44:50.905637824 +0900
+@@ -13,7 +13,7 @@
+ 
+ monitor: *Monitor,
+ output_status: *zriver.OutputStatusV1,
+-tags: [9]Tag,
++tags: [5]Tag,
+ 
+ pub const Tag = struct {
+     label: u8,
