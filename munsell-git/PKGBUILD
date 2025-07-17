@@ -19,7 +19,6 @@ pkgver() {
 
 build() {
     cd "$srcdir/$_pkgname"
-    ls -l
     python -m build --wheel --no-isolation
 }
 

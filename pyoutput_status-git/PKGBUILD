@@ -1,0 +1,31 @@
+# Maintainer: Takashi Sugibayashi <sugibayashi protonmail com>
+
+pkgname=pyoutput_status-git
+_pkgname='pyoutput_status'
+pkgver=r2.7e6f90f
+pkgrel=1
+pkgdesc="A shell script that prints status information to stdout"
+arch=('x86_64')
+license=('MIT')
+depends=('python-build' 'python-installer' 'python-wheel')
+#optdepends=('xbacklight' 'light' 'brightnessctl')
+url=https://codeberg.org/tsugibayashi/pyoutput_status
+source=(git+https://codeberg.org/tsugibayashi/${_pkgname}.git)
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$_pkgname"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$srcdir/$_pkgname"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+    cd "$srcdir/$_pkgname"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+    install -Dm644 start_dwm_statusbar $pkgdir/usr/share/doc/"$_pkgname"/start_dwm_statusbar
+}
+
