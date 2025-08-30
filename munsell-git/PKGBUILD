@@ -7,6 +7,7 @@ pkgrel=1
 pkgdesc="Munsell is used to adjust the backlight brightness based on the Munsell color system"
 arch=('x86_64')
 license=('GPL3')
+makedepends=('python-setuptools' 'python-build' 'python-installer')
 optdepends=('xorg-xbacklight' 'light' 'brightnessctl')
 url=https://github.com/tsugibayashi/munsell
 source=(git+https://github.com/tsugibayashi/${_pkgname}.git)
